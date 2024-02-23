@@ -1,17 +1,45 @@
 name: Build package
+
 run-name: ${{ github.actor }} build pacakge
 on: [push]
+
 jobs:
   build-linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions-rust-lang/setup-rust-toolchain@v1
-      - run: cargo build
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Install toolchain
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+
+      - name: Cargo build
+        run: cargo build --all --release
+      
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            target/release/tgl
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
   build-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions-rust-lang/setup-rust-toolchain@v1
-      - run: cargo build
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Install toolchain
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+
+      - name: Cargo build
+        run: cargo build --all --release
+      
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            target/release/tgl.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
