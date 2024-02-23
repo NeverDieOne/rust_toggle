@@ -1,6 +1,6 @@
 name: Build package
 
-run-name: ${{ github.actor }} build pacakge
+run-name: ${{ github.actor }} build package
 on:
   push:
     tags:
