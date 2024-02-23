@@ -12,20 +12,6 @@ pub struct TimeEntry {
     pub description: String
 }
 
-
-pub fn set_proxy(config: &mut ToggleConfig, proxy_url: String) {
-    config.proxy = proxy_url;
-}
-
-pub fn auth(config: &mut ToggleConfig, api_key: String) {
-    config.api_key = api_key;
-
-}
-
-pub fn logout(config: &mut ToggleConfig) {
-    config.api_key = String::from("");
-}
-
 pub fn get_current_time_entry(client: &reqwest::blocking::Client, config: &ToggleConfig) -> Option<TimeEntry> {
     let res: Option<TimeEntry> = client.get("https://api.track.toggl.com/api/v9/me/time_entries/current".to_string())
         .basic_auth(&config.api_key, Some("api_token"))

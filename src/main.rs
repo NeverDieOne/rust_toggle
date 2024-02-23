@@ -19,11 +19,11 @@ fn main() {
     match args.command {
         Commands::Auth {api_key} => {
             match api_key {
-                Some(key) => toggle::auth(&mut config, key),
+                Some(key) => config.api_key = key,
                 None => println!("Current auth: {}", config.api_key)
             }
         },
-        Commands::Logout => toggle::logout(&mut config),
+        Commands::Logout => config.api_key = String::from(""),
 
         Commands::Start { description} => toggle::start_entry(&client, &config, description),
         Commands::Stop => toggle::stop_entry(&client, &config),
@@ -34,7 +34,7 @@ fn main() {
 
         Commands::Proxy { proxy_url } => {
             match proxy_url {
-                Some(url) => toggle::set_proxy(&mut config, url),
+                Some(url) => config.proxy = url,
                 None => println!("Current proxy: {}", config.proxy),
             }
         },
