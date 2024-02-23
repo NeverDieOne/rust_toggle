@@ -3,7 +3,7 @@ use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
 #[command()]
-#[clap(about="CLI Toggle wrapper")]
+#[clap(about="CLI Toggle wrapper", version)]
 pub struct Cli {
     #[command(subcommand)]
     pub command: Commands
