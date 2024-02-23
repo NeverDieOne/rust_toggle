@@ -12,17 +12,18 @@ pub struct Cli {
 
 #[derive(Subcommand, Debug, Clone)]
 pub enum Commands {
-    /// Authorize with API key
+    /// Get/set API key to authorize in Toggle
     Auth {
         api_key: Option<String>
     },
     /// Delete store API key
     Logout,
-    /// Set proxy url to send requests via it
+    /// Get/Set proxy url to send requests via it
     Proxy {
         /// Optional proxy url to set
         proxy_url: Option<String>
     },
+    /// Get/set workspace id
     Workspace {
         workspace_id: Option<u32>
     },
