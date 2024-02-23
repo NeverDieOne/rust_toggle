@@ -23,6 +23,9 @@ pub enum Commands {
         /// Optional proxy url to set
         proxy_url: Option<String>
     },
+    Workspace {
+        workspace_id: Option<u32>
+    },
 
     /// Start the time entry
     Start {

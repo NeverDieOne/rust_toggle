@@ -38,6 +38,12 @@ fn main() {
                 None => println!("Current proxy: {}", config.proxy),
             }
         },
+        Commands::Workspace { workspace_id } => {
+            match workspace_id {
+                Some(id) => config.workspace_id = id,
+                None => println!("Current workspace: {}", config.workspace_id)
+            }
+        }
 
         Commands::Status => println!("{:?}", config)
     };
